@@ -11,7 +11,8 @@ import manager from "../store/modules/manager"
 import cate from "../store/modules/cate"
 import specs from "../store/modules/specs"
 import goods from "../store/modules/goods"
-
+import member from "../store/modules/member"
+import banner from "../store/modules/banner"
 export default new Vuex.Store({
   state,
   mutations,
@@ -23,6 +24,8 @@ export default new Vuex.Store({
     manager,
     cate,
     specs,
-    goods
+    goods,
+    member,
+    banner
   }
 })

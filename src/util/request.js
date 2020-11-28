@@ -414,3 +414,97 @@ export const menuGoodsCount=()=>{
     method:"get",
   })
 }
+
+
+// ***********************************************Member************************************
+
+// 请求member列表
+export const reqMemberList=()=>{
+  return axios({
+    url:baseUrl+"/api/memberlist",
+    method:"get",
+  })
+}
+
+
+
+//member获取一条数据
+
+export const oneMemberMessage=(uid)=>{
+  return axios({
+    url:baseUrl+"/api/memberinfo",
+    method:"get",
+    params:{
+      uid:uid
+    }
+  })
+}
+
+// member菜单修改
+export const menuMemberEdit=(formall)=>{
+  return axios({
+    url:baseUrl+"/api/memberedit",
+    method:"post",
+    data:qs.stringify(formall)
+  })
+}
+
+
+// ***************************************banner数据请求********************************************************
+// 请求banner添加的数据
+export const reqBannerAdd=(form)=>{
+  let data = new FormData()
+  for(let key in form){
+    data.append(key,form[key])
+  }
+  return axios({
+    url:baseUrl+"/api/banneradd",
+    method:"post",
+    data:data
+  })
+}
+// 请求banner列表
+
+export const reqBannerList=()=>{
+  return axios({
+    url:baseUrl+"/api/bannerlist",
+    method:"get",
+  })
+}
+
+
+// goods列表删除功能
+export const delBannerList=(id)=>{
+  return axios({
+    url:baseUrl+"/api/bannerdelete",
+    method:"post",
+    data:qs.stringify({
+      id:id
+    })
+  })
+}
+
+// goods获取一条数据
+
+export const oneBannerMessage=(id)=>{
+  return axios({
+    url:baseUrl+"/api/bannerinfo",
+    method:"get",
+    params:{
+      id:id
+    }
+  })
+}
+
+// goods菜单修改
+export const menuBannerEdit=(formall)=>{
+  let data = new FormData()
+  for(let key in formall){
+    data.append(key,formall[key])
+  }
+  return axios({
+    url:baseUrl+"/api/banneredit",
+    method:"post",
+    data:data
+  })
+}

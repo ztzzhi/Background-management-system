@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+// 引入userInfo 从 store中
+import store from "../store/index"
 
 Vue.use(Router)
 
@@ -52,6 +53,23 @@ Vue.use(Router)
 },
 ]
 
+// 封装一个 路由独享守卫的函数
+
+function toWhere(url,next){
+  let menus_url = store.state.userInfo.menus_url
+  if(menus_url.includes(url)){
+    next()
+  }else{
+    next("/")
+  }
+}
+
+
+
+
+
+
+
 const routerAll = new Router({
   routes: [{
       path: "/",
@@ -59,47 +77,92 @@ const routerAll = new Router({
       children: [{
           path: "/menu",
           name: "菜单管理",
-          component: () => import("../pages/menu/menu")
+          component: () => import("../pages/menu/menu"),
+          beforeEnter(to,from,next){
+            // 取出可以去的地址
+            toWhere("/menu",next)
+            
+          }
         },
         {
           path: "/role",
           name: "角色管理",
-          component: () => import("../pages/role/role")
+          component: () => import("../pages/role/role"),
+          beforeEnter(to,from,next){
+            // 取出可以去的地址
+            toWhere("/role",next)
+            
+          }
         },
         {
           path: "/manager",
           name: "管理员管理",
-          component: () => import("../pages/manager/manager")
+          component: () => import("../pages/manager/manager"),
+          beforeEnter(to,from,next){
+            // 取出可以去的地址
+            toWhere("/manager",next)
+            
+          }
         },
         {
           path: "/cate",
           name: "商品分类",
-          component: () => import("../pages/cate/cate")
+          component: () => import("../pages/cate/cate"),
+          beforeEnter(to,from,next){
+            // 取出可以去的地址
+            toWhere("/cate",next)
+            
+          }
         },
         {
           path: "/specs",
           name: "商品规格",
-          component: () => import("../pages/specs/specs")
+          component: () => import("../pages/specs/specs"),
+          beforeEnter(to,from,next){
+            // 取出可以去的地址
+            toWhere("/specs",next)
+            
+          }
         },
         {
           path: "/goods",
           name: "商品管理",
-          component: () => import("../pages/goods/goods")
+          component: () => import("../pages/goods/goods"),
+          beforeEnter(to,from,next){
+            // 取出可以去的地址
+            toWhere("/goods",next)
+            
+          }
         },
         {
           path: "/member",
           name: "会员管理",
-          component: () => import("../pages/member/member")
+          component: () => import("../pages/member/member"),
+          beforeEnter(to,from,next){
+            // 取出可以去的地址
+            toWhere("/member",next)
+            
+          }
         },
         {
           path: "/banner",
           name: "轮播图管理",
-          component: () => import("../pages/banner/banner")
+          component: () => import("../pages/banner/banner"),
+          beforeEnter(to,from,next){
+            // 取出可以去的地址
+            toWhere("/cate",next)
+            
+          }
         },
         {
           path: "/seckill",
           name: "秒杀活动",
-          component: () => import("../pages/seckill/seckill")
+          component: () => import("../pages/seckill/seckill"),
+          beforeEnter(to,from,next){
+            // 取出可以去的地址
+            toWhere("/cate",next)
+            
+          }
         },
       ]
     }, {
@@ -110,9 +173,23 @@ const routerAll = new Router({
     {
       path: "*",
       redirect: "/"
+      
     }
   ]
 })
+
+// routerAll.beforeEach(to,from,next)
+  // 取到存到store或者sessionStorage中的数据
+  routerAll.beforeEach((to,from,next)=>{
+    if(to.path=="/login"){
+      next()
+    }
+    else if(store.state.userInfo.token){
+      next()
+    }else{
+      next("/login")
+    }
+  })
 
 export default routerAll
 

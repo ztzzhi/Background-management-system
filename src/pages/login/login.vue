@@ -28,19 +28,28 @@ export default {
       info: {
         username: "",
         password: "",
-      },
+      }, 
     };
   },
   computed: {
-    ...mapGetters({}),
+    ...mapGetters({
+      userInfo:" "
+    }),
   },
   methods: {
-    ...mapActions({}),
+    ...mapActions({
+      reqChangeStore:"reqChangeStore"
+    }),
     log() {
       userLogin(this.info).then((res) => {
-        console.log(res);
         if (res.data.code == 200) {
           success(res.data.msg);
+          // 把返回数据的info穿进去？？？？？？？？？？？？？？？？？？？？？？
+          console.log(res);
+          this.reqChangeStore(res.data.list)
+          // 本地存储存一份
+          sessionStorage.setItem('userInfo',JSON.stringify(res.data.list) )
+          this.$router.push("/")
         } else {
           warning(res.data.msg);
         }
