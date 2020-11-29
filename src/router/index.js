@@ -95,12 +95,12 @@ const routerAll = new Router({
           }
         },
         {
-          path: "/manager",
+          path: "/manage",
           name: "管理员管理",
           component: () => import("../pages/manager/manager"),
           beforeEnter(to,from,next){
             // 取出可以去的地址
-            toWhere("/manager",next)
+            toWhere("/manage",next)
             
           }
         },
@@ -115,12 +115,12 @@ const routerAll = new Router({
           }
         },
         {
-          path: "/specs",
+          path: "/spec",
           name: "商品规格",
           component: () => import("../pages/specs/specs"),
           beforeEnter(to,from,next){
             // 取出可以去的地址
-            toWhere("/specs",next)
+            toWhere("/spec",next)
             
           }
         },
@@ -170,11 +170,11 @@ const routerAll = new Router({
       name: "登录页面",
       component: () => import("../pages/login/login")
     },
-    {
-      path: "*",
-      redirect: "/"
+    // {
+    //   path: "*",
+    //   redirect: "/"
       
-    }
+    // }
   ]
 })
 

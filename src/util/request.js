@@ -508,3 +508,54 @@ export const menuBannerEdit=(formall)=>{
     data:data
   })
 }
+
+// ***************************************seckill数据请求********************************************************
+// 请求seckill添加的数据
+export const reqSeckillAdd=(form)=>{
+  return axios({
+    url:baseUrl+"/api/seckadd",
+    method:"post",
+    data:form
+  })
+}
+// 请求seckill列表
+
+export const reqSeckillList=()=>{
+  return axios({
+    url:baseUrl+"/api/secklist",
+    method:"get",
+  })
+}
+
+
+// seckill列表删除功能
+export const delSeckillList=(id)=>{
+  return axios({
+    url:baseUrl+"/api/seckdelete",
+    method:"post",
+    data:qs.stringify({
+      id:id
+    })
+  })
+}
+
+// seckill获取一条数据
+
+export const oneSeckillMessage=(id)=>{
+  return axios({
+    url:baseUrl+"/api/seckinfo",
+    method:"get",
+    params:{
+      id:id
+    }
+  })
+}
+
+// seckill菜单修改
+export const menuSeckillEdit=(formall)=>{
+  return axios({
+    url:baseUrl+"/api/seckedit",
+    method:"post",
+    data:formall
+  })
+}
