@@ -6,7 +6,8 @@ import store from "../store/index"
 Vue.use(Router)
 
 
- export const routeChildren = [{
+ export const routeChildren = [
+  {
   path: "/menu",
   name: "菜单管理",
   component: () => import("../pages/menu/menu")
@@ -74,7 +75,17 @@ const routerAll = new Router({
   routes: [{
       path: "/",
       component: () => import("../pages/index/index"),
-      children: [{
+      children: [
+        {
+          path: "",
+          name: "首页",
+          component: () => import("../pages/home/home")
+        },
+        {
+          path: "/home",
+          name: "首页",
+          component: () => import("../pages/home/home")
+        },{
           path: "/menu",
           name: "菜单管理",
           component: () => import("../pages/menu/menu"),
