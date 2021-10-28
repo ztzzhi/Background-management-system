@@ -79,7 +79,7 @@ const routerAll = new Router({
         {
           path: "",
           name: "首页",
-          component: () => import("../pages/home/home")
+          redirect:'login'
         },
         {
           path: "/home",
